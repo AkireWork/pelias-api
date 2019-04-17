@@ -7,13 +7,13 @@
       {
         "env": "production",
         "protocol": "http",
-        "host": "pelias-data-container",
+        "host": "pelias_elasticsearch",
         "port": 9200
       },
       {
         "env": "production",
         "protocol": "http",
-        "host": "pelias-data-container",
+        "host": "pelias_elasticsearch",
         "port": 9300
       }
     ]
@@ -32,12 +32,10 @@
     "targets": {
       "canonical_sources": ["whosonfirst", "openstreetmap", "openaddresses", "geonames", "nlsfi", "gtfs"],
       "layers_by_source": {
-        "nlsfi": [ "venue", "stop", "station" ],
         "gtfs": [ "stop", "station" ]
       },
       "source_aliases": {
-        "gtfs": ["gtfs"],
-        "nlsfi": ["nlsfi"]
+        "gtfs": ["gtfs"]
       }
     },
     "textAnalyzer": "libpostal",
@@ -67,9 +65,8 @@
     "languages": [
       "fi",
       "default",
-      "sv",
+      "et",
       "en",
-      "se",
       "local",
       "alternative",
       "international",
@@ -81,16 +78,16 @@
       "sorting"
     ],
     "languageMap": {
-      "default":"fi",
-      "local":"fi",
-      "alternative":"fi",
-      "international":"fi",
-      "national":"fi",
-      "official":"fi",
-      "old":"fi",
-      "regional":"fi",
-      "short":"fi",
-      "sorting":"fi"
+      "default":"et",
+      "local":"et",
+      "alternative":"et",
+      "international":"et",
+      "national":"et",
+      "official":"et",
+      "old":"et",
+      "regional":"et",
+      "short":"et",
+      "sorting":"et"
     },
     "localization" : {
       "confidenceAdminWeights": {
@@ -106,13 +103,13 @@
         "street": {"parent":"address_parts", "field":"street", "numeric": false, "weight": 2},
         "postalcode": {"parent":"address_parts", "field":"zip", "numeric": false, "weight": 1}
       },
-      "filteredRegions": ["suomi", "finland"],
+      "filteredRegions": ["eesti", "estonia"],
       "cleanRegions": true,
       "postalCodeValidator": "^[0-9]{5}$",
       "streetNumberValidator": "^[0-9].*$",
       "translations": "/opt/pelias/api/translations.json",
       "equalCharMap": {
-        "é":"e",
+        "ï¿½":"e",
         "'":"",
         "-":" "
       },
