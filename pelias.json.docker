@@ -23,14 +23,14 @@
   },
   "acceptance-tests": {
     "endpoints": {
-      "dev": "http://dev-api.digitransit.fi/geocoding/v1/"
+      "dev": "http://api.dev.peatus.ee/geocoding/v1/"
     }
   },
   "api" : {
     "indexName": "pelias",
     "version": "1.0",
     "targets": {
-      "canonical_sources": ["whosonfirst", "openstreetmap", "openaddresses", "geonames", "nlsfi", "gtfs"],
+      "canonical_sources": ["whosonfirst", "openstreetmap", "openaddresses", "geonames", "gtfs"],
       "layers_by_source": {
         "gtfs": [ "stop", "station" ]
       },
