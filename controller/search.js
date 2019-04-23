@@ -24,7 +24,7 @@ function setup( apiConfig, esclient, query, should_execute ){
     }
 
     const renderedQuery = query(req.clean);
-    logger.info("#query#" + query);
+    console.log("#query#" + query);
 
     // if there's no query to call ES with, skip the service
     if (_.isUndefined(renderedQuery)) {
