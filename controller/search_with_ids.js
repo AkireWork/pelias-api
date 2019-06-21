@@ -23,6 +23,7 @@ function setup( apiConfig, esclient, query, should_execute ){
     }
 
     const renderedQuery = query(req.clean, res);
+    console.log("#query2#" + query);
 
     // if there's no query to call ES with, skip the service
     if (_.isUndefined(renderedQuery)) {
@@ -45,7 +46,7 @@ function setup( apiConfig, esclient, query, should_execute ){
     // elasticsearch command
     const cmd = {
       index: apiConfig.indexName,
-      searchType: 'dfs_query_then_fetch',
+      searchType: 'query_then_fetch',
       body: renderedQuery.body
     };
 

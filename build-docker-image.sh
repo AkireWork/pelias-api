@@ -1,5 +1,5 @@
 #!/bin/bash
-ORG=hsldevcom
+ORG=dolmit
 DOCKER_IMAGE=pelias-api
 
 # Set these environment variables
@@ -9,8 +9,8 @@ DOCKER_IMAGE=pelias-api
 #DOCKER_AUTH=
 
 # Build image
-docker build --tag="$ORG/$DOCKER_IMAGE:$DOCKER_TAG" .
-docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_AUTH
-docker push $ORG/$DOCKER_IMAGE:$DOCKER_TAG
-docker tag $ORG/$DOCKER_IMAGE:$DOCKER_TAG $ORG/$DOCKER_IMAGE:latest
+docker build --tag="$ORG/$DOCKER_IMAGE" .
+docker login -u $DOCKER_USER -p $DOCKER_AUTH
+docker push $ORG/$DOCKER_IMAGE
+docker tag $ORG/$DOCKER_IMAGE $ORG/$DOCKER_IMAGE:latest
 docker push $ORG/$DOCKER_IMAGE:latest
