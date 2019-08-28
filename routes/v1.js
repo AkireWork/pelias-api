@@ -299,7 +299,7 @@ function addRoutes(app, peliasConfig) {
 //      controllers.search(peliasConfig.api, esclient, queries.cascading_fallback, fallbackQueryShouldExecute),
       sanitizers.defer_to_addressit(shouldDeferToAddressIt),
       controllers.search(peliasConfig.api, esclient, queries.very_old_prod, oldProdQueryShouldExecute),
-      postProc.trimByGranularity(),
+      // postProc.trimByGranularity(),
       postProc.distances('focus.point.'),
       postProc.localNamingConventions(),
       postProc.confidenceScores(peliasConfig.api),

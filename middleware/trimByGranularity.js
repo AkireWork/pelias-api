@@ -64,7 +64,7 @@ function buildInvertedIndex(results) {
 function findMostGranularMatchedQuery(idx) {
   for( let i=0; i<layers.length; i++ ){
     let matchedQueryName = 'fallback.' + layers[i];
-    if( _.has( idx, matchedQueryName ) ){
+    if( idx && _.has( idx, matchedQueryName ) ){
       return matchedQueryName;
     }
   }
