@@ -50,9 +50,11 @@
           "ngram:analyzer": "peliasIndexOneEdgeGram",
           "ngram:multifield": ["name.*"],
           "phrase:multifield": ["name.*"],
-          "address:housenumber:boost": 0.1,
+          "address:housenumber:boost": 0.5,
           "address:street:boost": 1,
-          "admin:localadmin:boost": 20
+          "admin:localadmin:boost": 0.1,
+          "admin:county:boost": 0.5,
+          "admin:locality:boost": 0.5
         }
       },
       "autocomplete": {
@@ -63,9 +65,8 @@
       }
     },
     "languages": [
-      "fi",
-      "default",
       "et",
+      "default",
       "en",
       "local",
       "alternative",
@@ -91,17 +92,17 @@
     },
     "localization" : {
       "confidenceAdminWeights": {
-        "localadmin": 1,
-        "locality": 0.2,
+        "localadmin": 0.2,
+        "locality": 0.4,
         "neighbourhood": 0.2,
         "region": 0.2,
+        "county": 0.4,
         "country": 0.1,
         "street": 0.2
       },
       "confidenceAddressParts": {
 	"number": {"parent":"address_parts", "field":"number", "numeric": true, "weight": 0.5},
-        "street": {"parent":"address_parts", "field":"street", "numeric": false, "weight": 2},
-        "postalcode": {"parent":"address_parts", "field":"zip", "numeric": false, "weight": 1}
+        "street": {"parent":"address_parts", "field":"street", "numeric": false, "weight": 2}
       },
       "filteredRegions": ["eesti", "estonia"],
       "cleanRegions": true,
