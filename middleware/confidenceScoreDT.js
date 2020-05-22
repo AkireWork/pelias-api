@@ -107,20 +107,6 @@ function compareResults(a, b) {
   if (b.confidence !== a.confidence) {
     return b.confidence - a.confidence;
   }
-  if(a.layer !== b.layer) { // larger has higher priority
-    return layers.indexOf(b.layer) - layers.indexOf(a.layer);
-  }
-  if(a.source !== b.source) {
-    return sources.indexOf(b.source) - sources.indexOf(a.source);
-  }
-  if (a.popularity || b.popularity) {
-    var apop = a.popularity || 10;
-    var bpop = b.popularity || 10;
-    return bpop - apop;
-  }
-  if (a.distance !== b.distance) {  // focus point defined
-    return a.distance - b.distance;
-  }
   var diff;
   if (a.parent && b.parent) {
     diff = compareProperty(a.parent.localadmin, b.parent.localadmin);
@@ -133,7 +119,6 @@ function compareResults(a, b) {
     if (diff) {
       return diff;
     }
-
     var n1 = parseInt(a.address_parts.number);
     var n2 = parseInt(b.address_parts.number);
     if (!isNaN(n1) && !isNaN(n2)) {
@@ -148,6 +133,22 @@ function compareResults(a, b) {
     if (diff) {
       return diff;
     }
+  }
+  if (a.popularity || b.popularity) {
+    var apop = a.popularity || 10;
+    var bpop = b.popularity || 10;
+    if (apop !== bpop) {
+      return bpop - apop;
+    }
+  }
+  if(a.layer !== b.layer) { // larger has higher priority
+    return layers.indexOf(b.layer) - layers.indexOf(a.layer);
+  }
+  if (a.distance !== b.distance) {  // focus point defined
+    return a.distance - b.distance;
+  }
+  if(a.source !== b.source) {
+    return sources.indexOf(b.source) - sources.indexOf(a.source);
   }
 
   return 0;
@@ -301,7 +302,7 @@ function checkLanguageNames(text, doc, stripNumbers, tryGenitive) {
       if (tryGenitive && score > genitiveThreshold && // don't prefix unless base match is OK
           text.length > 2 + name.length ) { // Shortest admin prefix is 'ii '
         // prefix with parent admins to catch cases like 'kontulan r-kioski'
-        var parent = doc.parent;
+        var parent = doc.parent || {};
         for(var key in adminWeights) {
           var admins = parent[key];
           if (Array.isArray(admins)) {
@@ -471,7 +472,15 @@ function checkAdmin(values, hit) {
 
     // loop trough configured properties to find best match
     for(var key in adminWeights) {
-      var prop = (key === 'street' && hit.address_parts) ? hit.address_parts.street : hit.parent[key];
+      var prop;
+      if(key === 'street' && hit.address_parts) {
+        prop = hit.address_parts.street;
+      }
+      else if (hit.parent) {
+        prop = hit.parent[key];
+      } else {
+        prop = null;
+      }
       if (prop) {
         var match;
         if ( Array.isArray(prop) ) {
