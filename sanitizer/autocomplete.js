@@ -8,7 +8,7 @@ module.exports.middleware = (_api_pelias_config) => {
       debug: require('../sanitizer/_debug')(),
       text: require('../sanitizer/_text_addressit')(),
       tokenizer: require('../sanitizer/_tokenizer')(),
-      size: require('../sanitizer/_size')(10, 10, 10),
+      size: require('../sanitizer/_size')(10, 40, 10),
       lang: require('../sanitizer/_lang')(),
       layers: require('../sanitizer/_targets')('layers', type_mapping.layer_mapping),
       sources: require('../sanitizer/_targets')('sources', type_mapping.source_mapping),
