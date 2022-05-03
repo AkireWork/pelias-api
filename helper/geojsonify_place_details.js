@@ -57,7 +57,8 @@ const DETAILS_PROPS = [
   { name: 'bounding_box',      type: 'default' },
   { name: 'label',             type: 'string' },
   { name: 'category',          type: 'array',     condition: checkCategoryParam },
-  { name: 'zones',             type: 'array' }
+  { name: 'zones',             type: 'array' },
+  { name: 'type',              type: 'string' }
 ];
 
 // returns true IFF source a country_gid property
